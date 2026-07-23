@@ -208,6 +208,24 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
     <div id="etfWindCard" style="padding:14px;"></div>
   </div>
 
+  <!-- ETF 成交额 TOP10 -->
+  <div class="chart-card">
+    <div class="chart-header"><h3>ETF 成交额 TOP10（全市场）</h3><span class="badge">资金热度</span></div>
+    <div id="etfAmountCard" style="padding:14px;"></div>
+  </div>
+
+  <!-- ETF 涨幅 TOP10 -->
+  <div class="chart-card">
+    <div class="chart-header"><h3>ETF 涨幅 TOP10</h3><span class="badge">领涨ETF</span></div>
+    <div id="etfGainCard" style="padding:14px;"></div>
+  </div>
+
+  <!-- ETF 跌幅 TOP10 -->
+  <div class="chart-card">
+    <div class="chart-header"><h3>ETF 跌幅 TOP10</h3><span class="badge">领跌ETF</span></div>
+    <div id="etfLossCard" style="padding:14px;"></div>
+  </div>
+
   <!-- 北向资金流向 -->
   <div class="chart-card">
     <div class="chart-header"><h3>北向资金流向（近100日）</h3><span class="badge">外资动向</span></div>
@@ -842,6 +860,42 @@ function drawAllCharts() {
     html += '</div>';
     
     document.getElementById('etfWindCard').innerHTML = html;
+  }
+
+  // ETF Market Cards (腾讯财经全市场数据)
+  if (D.etf_market) {
+    const etf = D.etf_market;
+    
+    // ETF 成交额 TOP10
+    let amtHtml = '<div style="display:flex;gap:8px;margin-bottom:4px;font-size:0.65rem;color:#64748b;">';
+    amtHtml += '<span>📊 覆盖 '+etf.total_count+'只ETF | 总成交: '+(etf.total_amount_wan/1e4).toFixed(0)+'亿 | 均涨跌: '+(etf.avg_change_pct>0?'+':'')+etf.avg_change_pct.toFixed(2)+'%</span>';
+    amtHtml += '</div>';
+    amtHtml += '<table style="width:100%;font-size:0.7rem;border-collapse:collapse;">';
+    amtHtml += '<tr style="color:#64748b;border-bottom:1px solid #334155;"><th style="text-align:left;padding:4px;">#</th><th style="text-align:left;">ETF</th><th style="text-align:right;">价格</th><th style="text-align:right;">涨跌</th><th style="text-align:right;">成交(亿)</th></tr>';
+    etf.top_amount.forEach((e,i) => {
+      const clr = e.change_pct >= 0 ? '#ef4444' : '#22c55e';
+      amtHtml += '<tr style="border-bottom:1px solid rgba(51,65,85,0.3);"><td style="padding:4px;color:#64748b;">'+(i+1)+'</td><td style="padding:4px;"><span style="font-weight:600;">'+e.name+'</span><span style="color:#64748b;font-size:0.6rem;margin-left:4px;">'+e.code+'</span></td><td style="text-align:right;padding:4px;">'+e.price.toFixed(3)+'</td><td style="text-align:right;color:'+clr+';font-weight:600;padding:4px;">'+(e.change_pct>0?'+':'')+e.change_pct.toFixed(2)+'%</td><td style="text-align:right;padding:4px;">'+(e.amount_wan/1e4).toFixed(1)+'</td></tr>';
+    });
+    amtHtml += '</table>';
+    document.getElementById('etfAmountCard').innerHTML = amtHtml;
+
+    // ETF 涨幅 TOP10
+    let gainHtml = '<table style="width:100%;font-size:0.7rem;border-collapse:collapse;">';
+    gainHtml += '<tr style="color:#64748b;border-bottom:1px solid #334155;"><th style="text-align:left;padding:4px;">#</th><th style="text-align:left;">ETF</th><th style="text-align:right;">价格</th><th style="text-align:right;">涨跌</th><th style="text-align:right;">成交(亿)</th></tr>';
+    etf.top_gain.forEach((e,i) => {
+      gainHtml += '<tr style="border-bottom:1px solid rgba(51,65,85,0.3);"><td style="padding:4px;color:#64748b;">'+(i+1)+'</td><td style="padding:4px;"><span style="font-weight:600;">'+e.name+'</span><span style="color:#64748b;font-size:0.6rem;margin-left:4px;">'+e.code+'</span></td><td style="text-align:right;padding:4px;">'+e.price.toFixed(3)+'</td><td style="text-align:right;color:#ef4444;font-weight:600;padding:4px;">'+(e.change_pct>0?'+':'')+e.change_pct.toFixed(2)+'%</td><td style="text-align:right;padding:4px;">'+(e.amount_wan/1e4).toFixed(1)+'</td></tr>';
+    });
+    gainHtml += '</table>';
+    document.getElementById('etfGainCard').innerHTML = gainHtml;
+
+    // ETF 跌幅 TOP10
+    let lossHtml = '<table style="width:100%;font-size:0.7rem;border-collapse:collapse;">';
+    lossHtml += '<tr style="color:#64748b;border-bottom:1px solid #334155;"><th style="text-align:left;padding:4px;">#</th><th style="text-align:left;">ETF</th><th style="text-align:right;">价格</th><th style="text-align:right;">涨跌</th><th style="text-align:right;">成交(亿)</th></tr>';
+    etf.top_loss.forEach((e,i) => {
+      lossHtml += '<tr style="border-bottom:1px solid rgba(51,65,85,0.3);"><td style="padding:4px;color:#64748b;">'+(i+1)+'</td><td style="padding:4px;"><span style="font-weight:600;">'+e.name+'</span><span style="color:#64748b;font-size:0.6rem;margin-left:4px;">'+e.code+'</span></td><td style="text-align:right;padding:4px;">'+e.price.toFixed(3)+'</td><td style="text-align:right;color:#22c55e;font-weight:600;padding:4px;">'+e.change_pct.toFixed(2)+'%</td><td style="text-align:right;padding:4px;">'+(e.amount_wan/1e4).toFixed(1)+'</td></tr>';
+    });
+    lossHtml += '</table>';
+    document.getElementById('etfLossCard').innerHTML = lossHtml;
   }
 
   // Render remaining placeholder charts
