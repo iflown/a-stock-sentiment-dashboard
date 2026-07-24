@@ -196,12 +196,6 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
     <div id="limitStatsCard" style="padding:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;"></div>
   </div>
 
-  <!-- 市场宽度 ADL 腾落线 -->
-  <div class="chart-card">
-    <div class="chart-header"><h3>市场宽度 ADL 腾落线</h3><span class="badge">市场宽度</span></div>
-    <div class="chart-body" id="chartADL"></div>
-  </div>
-
   <!-- ETF 资金流（Wind 数据） -->
   <div class="chart-card full">
     <div class="chart-header"><h3>核心宽基ETF 近10日资金净流入/流出（Wind）</h3><span class="badge">ETF资金流</span></div>
@@ -232,13 +226,7 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
     <div class="chart-body" id="chartNorthFlow"></div>
   </div>
 
-  <!-- 行业涨跌热力图 -->
-  <div class="chart-card full">
-    <div class="chart-header"><h3>行业涨跌热力图（近20日 · 申万一级行业）</h3><span class="badge">行业轮动</span></div>
-    <div class="chart-body tall" id="chartHeatmap"></div>
-  </div>
-
-  <!-- 成交额集中度 TOP3/TOP5 -->
+  <!-- 北向资金流向 -->
   <div class="chart-card">
     <div class="chart-header"><h3>成交额集中度 TOP3/TOP5</h3><span class="badge">集中度</span></div>
     <div class="chart-body" id="chartConcentration"></div>
@@ -248,12 +236,6 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
   <div class="chart-card">
     <div class="chart-header"><h3>50日均线以上行业占比</h3><span class="badge">趋势跟踪</span></div>
     <div class="chart-body" id="chartMA50"></div>
-  </div>
-
-  <!-- 波动率指数 -->
-  <div class="chart-card">
-    <div class="chart-header"><h3>波动率指数（万得全A 20日年化）</h3><span class="badge">风险度量</span></div>
-    <div class="chart-body" id="chartVolatility"></div>
   </div>
 
   <!-- 龙虎榜机构vs游资 -->
@@ -586,30 +568,6 @@ function drawAllCharts() {
     }).join('');
   }
 
-  // Chart: ADL
-  if (D.market_breadth && charts.adl) {
-    const mb = D.market_breadth;
-    const adlr = filterRange(mb.dates, mb.adl);
-    let add, adv;
-    if (currentRange === '1y') { add=adlr.dates1y; adv=adlr.arrays1y[0]; }
-    else if (currentRange === '3y') { add=adlr.dates3y; adv=adlr.arrays3y[0]; }
-    else { add=adlr.datesAll; adv=adlr.arraysAll[0]; }
-    charts.adl.setOption({
-      tooltip: {trigger:'axis', backgroundColor:'rgba(15,23,42,0.95)', borderColor:'#334155', textStyle:{color:'#e2e8f0',fontSize:11}},
-      legend: {textStyle:{color:'#94a3b8',fontSize:10}, top:0},
-      grid: {left:'8%', right:'5%', top:'15%', bottom:'8%'},
-      xAxis: {type:'category', data:add, axisLine:{lineStyle:{color:'#334155'}}, axisLabel:{color:'#64748b',fontSize:9}},
-      yAxis:[
-        {type:'value', name:'ADL', splitLine:{lineStyle:{color:'#1e293b'}}, axisLabel:{color:'#64748b',fontSize:9}},
-        {type:'value', splitLine:{show:false}, axisLabel:{color:'#64748b',fontSize:9}},
-      ],
-      series:[
-        {name:'ADL腾落线', type:'line', data:adv, smooth:true, lineStyle:{color:C.blue,width:1.5}, areaStyle:{color:'rgba(56,189,248,0.1)'}, symbol:'none'},
-        {name:'上证指数', type:'line', yAxisIndex:1, data:getShForRange(add), smooth:true, lineStyle:{color:'rgba(255,255,255,0.3)',width:1}, symbol:'none'},
-      ]
-    }, true);
-  }
-
   // Chart: North Flow
   if (D.north_flow && charts.northFlow) {
     const nf = D.north_flow;
@@ -626,31 +584,6 @@ function drawAllCharts() {
         {name:'深股通', type:'bar', data:nf.sz_buy, stack:'flow', itemStyle:{color:'rgba(34,197,94,0.7)'}},
         {name:'北向合计', type:'line', data:nf.net_buy, smooth:true, lineStyle:{color:C.blue,width:2}, symbol:'none'},
       ]
-    }, true);
-  }
-
-  // Chart: Industry Heatmap
-  if (D.industry_heatmap && charts.heatmap) {
-    const hm = D.industry_heatmap;
-    const data = [];
-    hm.industries.forEach((ind, i) => {
-      hm.dates.forEach((d, j) => {
-        data.push([j, i, hm.data[ind] ? hm.data[ind][j] || 0 : 0]);
-      });
-    });
-    const maxAbs = Math.max(...data.map(d=>Math.abs(d[2])), 30);
-    charts.heatmap.setOption({
-      tooltip: {
-        backgroundColor:'rgba(15,23,42,0.95)', borderColor:'#334155', textStyle:{color:'#e2e8f0',fontSize:11},
-        formatter: function(p) { return hm.industries[p.value[1]] + '<br/>' + hm.dates[p.value[0]] + '<br/>涨跌: ' + p.value[2].toFixed(1) + '%'; }
-      },
-      grid: {left:'12%', right:'8%', top:'5%', bottom:'12%'},
-      xAxis: {type:'category', data:hm.dates, axisLabel:{color:'#64748b',fontSize:8, rotate:45}, axisLine:{lineStyle:{color:'#334155'}}, position:'top'},
-      yAxis: {type:'category', data:hm.industries, axisLabel:{color:'#94a3b8',fontSize:9}, axisLine:{lineStyle:{color:'#334155'}}},
-      visualMap: {min:-maxAbs, max:maxAbs, calculable:true, orient:'horizontal', left:'center', bottom:0,
-        inRange:{color:['#22c55e','#1e293b','#ef4444']},
-        text:['涨','跌'], textStyle:{color:'#94a3b8',fontSize:9}},
-      series:[{type:'heatmap', data:data, label:{show:true,fontSize:7,formatter:p=>p.value[2].toFixed(1)}, emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,0.5)'}}}],
     }, true);
   }
 
@@ -700,30 +633,6 @@ function drawAllCharts() {
         {name:'50日均线上方占比', type:'line', data:m50v.map(v=>v*100), smooth:true, lineStyle:{color:C.teal,width:1.5}, areaStyle:{color:'rgba(20,184,166,0.1)'}, symbol:'none',
           markLine:{silent:true,data:[{yAxis:50,lineStyle:{color:'#64748b',type:'dashed'}},{yAxis:70,lineStyle:{color:'rgba(239,68,68,0.5)',type:'dashed'}},{yAxis:30,lineStyle:{color:'rgba(34,197,94,0.5)',type:'dashed'}}]}},
         {name:'上证指数', type:'line', yAxisIndex:1, data:getShForRange(m50d), smooth:true, lineStyle:{color:'rgba(255,255,255,0.3)',width:1}, symbol:'none'},
-      ]
-    }, true);
-  }
-
-  // Chart: Volatility
-  if (D.vol_data && charts.volatility) {
-    const vd = D.vol_data;
-    const vdr = filterRange(vd.dates, vd.volatility);
-    let vdd, vdv;
-    if (currentRange === '1y') { vdd=vdr.dates1y; vdv=vdr.arrays1y[0]; }
-    else if (currentRange === '3y') { vdd=vdr.dates3y; vdv=vdr.arrays3y[0]; }
-    else { vdd=vdr.datesAll; vdv=vdr.arraysAll[0]; }
-    charts.volatility.setOption({
-      tooltip: {trigger:'axis', backgroundColor:'rgba(15,23,42,0.95)', borderColor:'#334155', textStyle:{color:'#e2e8f0',fontSize:11}},
-      legend: {textStyle:{color:'#94a3b8',fontSize:10}, top:0},
-      grid: {left:'8%', right:'5%', top:'15%', bottom:'8%'},
-      xAxis: {type:'category', data:vdd, axisLine:{lineStyle:{color:'#334155'}}, axisLabel:{color:'#64748b',fontSize:9}},
-      yAxis:[
-        {type:'value', name:'年化波动率(%)', splitLine:{lineStyle:{color:'#1e293b'}}, axisLabel:{color:'#64748b',fontSize:9,formatter:v=>v.toFixed(0)+'%'}},
-        {type:'value', splitLine:{show:false}, axisLabel:{color:'#64748b',fontSize:9}},
-      ],
-      series:[
-        {name:'20日年化波动率', type:'line', data:vdv.map(v=>v*100), smooth:true, lineStyle:{color:C.pink,width:1.5}, areaStyle:{color:'rgba(236,72,153,0.1)'}, symbol:'none'},
-        {name:'上证指数', type:'line', yAxisIndex:1, data:getShForRange(vdd), smooth:true, lineStyle:{color:'rgba(255,255,255,0.3)',width:1}, symbol:'none'},
       ]
     }, true);
   }
@@ -918,12 +827,9 @@ function initAll() {
   charts.turnover = initChart('chartTurnover');
   charts.industry = initChart('chartIndustry');
   charts.marginBal = initChart('chartMarginBal');
-  charts.adl = initChart('chartADL');
   charts.northFlow = initChart('chartNorthFlow');
-  charts.heatmap = initChart('chartHeatmap');
   charts.concentration = initChart('chartConcentration');
   charts.ma50 = initChart('chartMA50');
-  charts.volatility = initChart('chartVolatility');
   charts.fundHoldings = initChart('chartFundHoldings');
   updateStats();
   drawAllCharts();
