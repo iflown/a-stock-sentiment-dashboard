@@ -399,7 +399,7 @@ function drawAllCharts() {
         const vals = [];
         icd.forEach(d => {
           const idx = ic.dates.indexOf(d);
-          vals.push(idx >= 0 && ic.industries[name] ? ic.industries[name][idx] / 1e8 : 0);
+          vals.push(idx >= 0 && ic.industries[name] ? ic.industries[name][idx] : 0);
         });
         return {name:name, type:'bar', stack:'total', data:vals, emphasis:{focus:'series'}};
       });
