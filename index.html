@@ -89,6 +89,8 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(500px,1fr)); gap:14px; padding:0 24px 24px; }
 .chart-card { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
 .chart-card.full { grid-column:1/-1; }
+.chart-card.half { grid-column:span 1; }
+@media (min-width:1200px) { .chart-card.half { grid-column:span 1; } }
 .chart-header { padding:10px 14px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:#fafbfc; }
 .chart-header h3 { font-size:0.85rem; font-weight:600; }
 .chart-header .badge { font-size:0.65rem; padding:2px 8px; border-radius:10px; background:rgba(49,130,206,0.1); color:var(--accent); }
@@ -165,7 +167,7 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
         <div class="insight-item">
             <div class="insight-title">💰 资金动向</div>
             <div class="insight-desc">两融余额 <b>25069</b>亿（+118亿），
-            核心ETF近10日净流入 <b>0.0</b>亿，
+            核心ETF近10日净流入 <b>274.1</b>亿，
             半导体资金 净流入 0.2亿</div>
         </div>
   </div>
@@ -173,181 +175,184 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 
 <div class="stats-row" id="statsRow"></div>
 
-<!-- 🔥 热点主线 -->
+<!-- 📡 机构热议（AlphaPai 蓝宝书） -->
 <div class="theme-section">
-  <div class="theme-header"><h3>🔥 热点主线</h3></div>
+  <div class="theme-header"><h3>📡 机构热议 · AlphaPai 蓝宝书</h3><span style="font-size:0.68rem;color:#a0aec0;font-weight:400;">机构投研系统实时追踪</span></div>
   <div class="theme-body">
     
-            <div class="theme-card">
-                <div class="theme-icon">📡</div>
-                <div class="theme-title">主线一：AlphaPai 蓝宝书 · 今日核心话题</div>
-                <div class="theme-desc">机构投研系统实时追踪的最新市场热点与产业链逻辑</div>
-                
-                <div style="background:#f7fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #e53e3e;">
-                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-                        <span style="font-size:0.72rem;font-weight:700;color:#1a202c;">AAOI上修2027年数据中心月收入指引</span>
-                        <span style="font-size:0.6rem;background:#e53e3e;color:#fff;padding:1px 6px;border-radius:8px;">热度10</span>
-                    </div>
-                    <div style="font-size:0.66rem;color:#4a5568;line-height:1.5;">应用光电(AAOI)在8月6日财报中将2027年中期数据中心业务月收入指引从3.78亿美元大幅上修至4.71亿美元，并预计800G/1.6T产能在2026年底达到65万/月。市场认为，在英伟达Rubin平台推动CPO/NPO技术加速渗透及需...</div>
-                    <div style="margin-top:6px;"><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">月之暗面</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">DeepSeek（深度求索）</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">OpenAI</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">Anthropic</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">腾讯控股</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">阿里巴巴</span></div>
-                    <div style="font-size:0.58rem;color:#a0aec0;margin-top:4px;">来源：AAOI上修指引、高盛上调AIPCB预测、宇树科技高溢价IPO</div>
+            <div style="background:#f7fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #e53e3e;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                    <span style="font-size:0.6rem;color:#a0aec0;min-width:16px;">#1</span>
+                    <span style="font-size:0.72rem;font-weight:700;color:#1a202c;">AAOI上修2027年数据中心月收入指引</span>
+                    <span style="font-size:0.58rem;background:#e53e3e;color:#fff;padding:1px 6px;border-radius:8px;white-space:nowrap;">热度10</span>
                 </div>
-                <div style="background:#f7fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #ed8936;">
-                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-                        <span style="font-size:0.72rem;font-weight:700;color:#1a202c;">高盛上调2027年全球AIPCB市场规模预测</span>
-                        <span style="font-size:0.6rem;background:#ed8936;color:#fff;padding:1px 6px;border-radius:8px;">热度9</span>
-                    </div>
-                    <div style="font-size:0.66rem;color:#4a5568;line-height:1.5;">8月6日，高盛报告将2027年全球AI PCB市场规模（TAM）预测上调38%至380亿美元，并预计2028年将达840亿美元。市场认为，英伟达Rubin平台及谷歌TPU v8等AI新产品周期开启，叠加非AI PCB进入涨价修复通道，产业链...</div>
-                    <div style="margin-top:6px;"><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">航天电器</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">华丰科技</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">银轮股份</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">麦格米特</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">中航光电</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">艾华集团</span></div>
-                    <div style="font-size:0.58rem;color:#a0aec0;margin-top:4px;">来源：AAOI上修指引、高盛上调AIPCB预测、宇树科技高溢价IPO</div>
-                </div>
-                <div style="background:#f7fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #ed8936;">
-                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-                        <span style="font-size:0.72rem;font-weight:700;color:#1a202c;">宇树科技IPO发行价150.8元每股</span>
-                        <span style="font-size:0.6rem;background:#ed8936;color:#fff;padding:1px 6px;border-radius:8px;">热度9</span>
-                    </div>
-                    <div style="font-size:0.66rem;color:#4a5568;line-height:1.5;">8月6日，宇树科技公告其科创板IPO发行价为150.80元/股，对应发行市值约610亿元，显著高于市场此前预期。此定价为后续拟上市的智元、乐聚等国产机器人本体厂商提供了估值锚，市场认为这标志着国产人形机器人赛道进入价值重估阶段。</div>
-                    <div style="margin-top:6px;"><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">景兴纸业</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">腾讯控股</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">经纬创投</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">红杉中国</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">美团</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">中信证券</span></div>
-                    <div style="font-size:0.58rem;color:#a0aec0;margin-top:4px;">来源：AAOI上修指引、高盛上调AIPCB预测、宇树科技高溢价IPO</div>
-                </div>
-                <div style="background:#f7fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #38a169;">
-                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-                        <span style="font-size:0.72rem;font-weight:700;color:#1a202c;">网信办对派拓公司启动网络安全审查</span>
-                        <span style="font-size:0.6rem;background:#38a169;color:#fff;padding:1px 6px;border-radius:8px;">热度7</span>
-                    </div>
-                    <div style="font-size:0.66rem;color:#4a5568;line-height:1.5;">8月6日，中国网络安全审查办公室宣布对派拓公司（Palo Alto Networks）在华销售产品启动网络安全审查，这是继美光后第二家被审查的美国科技公司。市场认为，叠加近期Meta等AI模型失控事件频发，企业AI风险敞口增加，国内网络安全...</div>
-                    <div style="margin-top:6px;"><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">盛邦安全</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">任子行</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">中新赛克</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">国安股份</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">亚信安全</span><span style="display:inline-block;background:#edf2f7;color:#4a5568;padding:1px 6px;border-radius:3px;margin:2px;font-size:0.62rem;">国投智能</span></div>
-                    <div style="font-size:0.58rem;color:#a0aec0;margin-top:4px;">来源：AAOI上修指引、高盛上调AIPCB预测、宇树科技高溢价IPO</div>
-                </div>
+                <div style="font-size:0.66rem;color:#4a5568;line-height:1.5;">应用光电(AAOI)在8月6日财报中将2027年中期数据中心业务月收入指引从3.78亿美元大幅上修至4.71亿美元，并预计800G/1.6T产能在2026年底达到65万/月。市场认为，在英伟达Rubin平台推动CPO/NPO技术加速渗透及需求持续超供给的背景下，光芯片、光模块及上游材料环节将迎来量价...</div>
+                <div style="margin-top:8px;line-height:1.8;"><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">润泽科技<span style="color:#a0aec0;font-size:0.52rem;"> 300442.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">奥飞数据<span style="color:#a0aec0;font-size:0.52rem;"> 300738.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">光环新网<span style="color:#a0aec0;font-size:0.52rem;"> 300383.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">中国西电<span style="color:#a0aec0;font-size:0.52rem;"> 601179.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">特锐德<span style="color:#a0aec0;font-size:0.52rem;"> 300001.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">科华数据<span style="color:#a0aec0;font-size:0.52rem;"> 002335.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">杰瑞股份<span style="color:#a0aec0;font-size:0.52rem;"> 002353.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">潍柴动力<span style="color:#a0aec0;font-size:0.52rem;"> 000338.SZ</span></span></div>
             </div>
 
-            <div class="theme-card">
-                <div class="theme-icon">🏆</div>
-                <div class="theme-title">主线二：机构热议个股 TOP8</div>
-                <div class="theme-desc">公募/私募机构当日投研会议中高频提及的热门标的</div>
-                <div style="margin-top:6px;">
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid #edf2f7;">
-                    <div style="display:flex;align-items:center;gap:6px;">
-                        <span style="font-size:0.65rem;color:#a0aec0;width:18px;">1</span>
-                        <span style="font-size:0.7rem;font-weight:600;color:#1a202c;">中际旭创</span>
-                        <span style="font-size:0.58rem;color:#a0aec0;">300308.SZ</span>
-                        <span style="font-size:0.56rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:3px;">公</span>
-                    </div>
-                    <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;">🔥21</span>
+            <div style="background:#f7fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #ed8936;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                    <span style="font-size:0.6rem;color:#a0aec0;min-width:16px;">#2</span>
+                    <span style="font-size:0.72rem;font-weight:700;color:#1a202c;">高盛上调2027年全球AIPCB市场规模预测</span>
+                    <span style="font-size:0.58rem;background:#ed8936;color:#fff;padding:1px 6px;border-radius:8px;white-space:nowrap;">热度9</span>
                 </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid #edf2f7;">
-                    <div style="display:flex;align-items:center;gap:6px;">
-                        <span style="font-size:0.65rem;color:#a0aec0;width:18px;">2</span>
-                        <span style="font-size:0.7rem;font-weight:600;color:#1a202c;">宁德时代</span>
-                        <span style="font-size:0.58rem;color:#a0aec0;">300750.SZ</span>
-                        <span style="font-size:0.56rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:3px;">公</span>
-                    </div>
-                    <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;">🔥16</span>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid #edf2f7;">
-                    <div style="display:flex;align-items:center;gap:6px;">
-                        <span style="font-size:0.65rem;color:#a0aec0;width:18px;">3</span>
-                        <span style="font-size:0.7rem;font-weight:600;color:#1a202c;">百济神州</span>
-                        <span style="font-size:0.58rem;color:#a0aec0;">688235.SH</span>
-                        <span style="font-size:0.56rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:3px;">公</span>
-                    </div>
-                    <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;">🔥15</span>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid #edf2f7;">
-                    <div style="display:flex;align-items:center;gap:6px;">
-                        <span style="font-size:0.65rem;color:#a0aec0;width:18px;">4</span>
-                        <span style="font-size:0.7rem;font-weight:600;color:#1a202c;">浙江自然</span>
-                        <span style="font-size:0.58rem;color:#a0aec0;">605080.SH</span>
-                        <span style="font-size:0.56rem;background:#805ad5;color:#fff;padding:1px 4px;border-radius:3px;">私</span>
-                    </div>
-                    <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;">🔥15</span>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid #edf2f7;">
-                    <div style="display:flex;align-items:center;gap:6px;">
-                        <span style="font-size:0.65rem;color:#a0aec0;width:18px;">5</span>
-                        <span style="font-size:0.7rem;font-weight:600;color:#1a202c;">三环集团</span>
-                        <span style="font-size:0.58rem;color:#a0aec0;">300408.SZ</span>
-                        <span style="font-size:0.56rem;background:#805ad5;color:#fff;padding:1px 4px;border-radius:3px;">私</span>
-                    </div>
-                    <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;">🔥14</span>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid #edf2f7;">
-                    <div style="display:flex;align-items:center;gap:6px;">
-                        <span style="font-size:0.65rem;color:#a0aec0;width:18px;">6</span>
-                        <span style="font-size:0.7rem;font-weight:600;color:#1a202c;">长鑫科技</span>
-                        <span style="font-size:0.58rem;color:#a0aec0;">688825.SH</span>
-                        <span style="font-size:0.56rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:3px;">公</span>
-                    </div>
-                    <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;">🔥12</span>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid #edf2f7;">
-                    <div style="display:flex;align-items:center;gap:6px;">
-                        <span style="font-size:0.65rem;color:#a0aec0;width:18px;">7</span>
-                        <span style="font-size:0.7rem;font-weight:600;color:#1a202c;">中巨芯</span>
-                        <span style="font-size:0.58rem;color:#a0aec0;">688549.SH</span>
-                        <span style="font-size:0.56rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:3px;">公</span>
-                    </div>
-                    <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;">🔥11</span>
-                </div></div>
+                <div style="font-size:0.66rem;color:#4a5568;line-height:1.5;">8月6日，高盛报告将2027年全球AI PCB市场规模（TAM）预测上调38%至380亿美元，并预计2028年将达840亿美元。市场认为，英伟达Rubin平台及谷歌TPU v8等AI新产品周期开启，叠加非AI PCB进入涨价修复通道，产业链景气度由AI向非AI领域扩散，三季度业绩兑现有望加速。</div>
+                <div style="margin-top:8px;line-height:1.8;"><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">航天电器<span style="color:#a0aec0;font-size:0.52rem;"> 002025.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">华丰科技<span style="color:#a0aec0;font-size:0.52rem;"> 688629.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">银轮股份<span style="color:#a0aec0;font-size:0.52rem;"> 002126.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">麦格米特<span style="color:#a0aec0;font-size:0.52rem;"> 002851.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">中航光电<span style="color:#a0aec0;font-size:0.52rem;"> 002179.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">艾华集团<span style="color:#a0aec0;font-size:0.52rem;"> 603989.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">火炬电子<span style="color:#a0aec0;font-size:0.52rem;"> 603678.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">顺络电子<span style="color:#a0aec0;font-size:0.52rem;"> 002138.SZ</span></span></div>
             </div>
 
-            <div class="theme-card">
-                <div class="theme-icon">🔥</div>
-                <div class="theme-title">主线三：行业轮动与资金分布</div>
-                <div class="theme-desc">申万行业涨跌幅 + 成交额集中度</div>
-                
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px;">
-                <div style="background:#f7fafc;border-radius:6px;padding:8px 10px;">
-                    <div style="font-size:0.62rem;color:#a0aec0;margin-bottom:4px;">📈 涨幅TOP5</div>
-                    <div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>有色金属</span><span class="val-up">+23.0%</span></div><div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>石油石化</span><span class="val-up">+106.7%</span></div><div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>基础化工</span><span class="val-up">+8.4%</span></div><div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>建筑材料</span><span class="val-up">+14.0%</span></div><div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>农林牧渔</span><span class="val-up">+16.9%</span></div>
+            <div style="background:#f7fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #ed8936;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                    <span style="font-size:0.6rem;color:#a0aec0;min-width:16px;">#3</span>
+                    <span style="font-size:0.72rem;font-weight:700;color:#1a202c;">宇树科技IPO发行价150.8元每股</span>
+                    <span style="font-size:0.58rem;background:#ed8936;color:#fff;padding:1px 6px;border-radius:8px;white-space:nowrap;">热度9</span>
                 </div>
-                <div style="background:#f7fafc;border-radius:6px;padding:8px 10px;">
-                    <div style="font-size:0.62rem;color:#a0aec0;margin-bottom:4px;">📉 跌幅TOP5</div>
-                    <div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>美容护理</span><span class="val-down">-2.5%</span></div><div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>建筑装饰</span><span class="val-down">-1.7%</span></div><div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>综合</span><span class="val-down">-14.7%</span></div><div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>社会服务</span><span class="val-down">-4.8%</span></div><div style="display:flex;justify-content:space-between;padding:2px 0;font-size:0.66rem;"><span>房地产</span><span class="val-down">-4.4%</span></div>
-                </div>
-            </div>
-                <div style="margin-top:8px;font-size:0.66rem;color:#4a5568;line-height:1.6;">
-                    <div>📊 <b>成交额TOP3：</b>电子 7281亿、通信 2138亿、有色金属 1945亿</div>
-                    <div>📊 <b>TMT占比：</b>47.0% | <b>TOP5集中度：</b>59.3%</div>
-                </div>
+                <div style="font-size:0.66rem;color:#4a5568;line-height:1.5;">8月6日，宇树科技公告其科创板IPO发行价为150.80元/股，对应发行市值约610亿元，显著高于市场此前预期。此定价为后续拟上市的智元、乐聚等国产机器人本体厂商提供了估值锚，市场认为这标志着国产人形机器人赛道进入价值重估阶段。</div>
+                <div style="margin-top:8px;line-height:1.8;"><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">景兴纸业<span style="color:#a0aec0;font-size:0.52rem;"> 002067.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">中信证券<span style="color:#a0aec0;font-size:0.52rem;"> 600030.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">科大讯飞<span style="color:#a0aec0;font-size:0.52rem;"> 002230.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">华菱钢铁<span style="color:#a0aec0;font-size:0.52rem;"> 000932.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">奥比中光<span style="color:#a0aec0;font-size:0.52rem;"> 688322.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">汇川技术<span style="color:#a0aec0;font-size:0.52rem;"> 300124.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">鸣志电器<span style="color:#a0aec0;font-size:0.52rem;"> 603728.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">中大力德<span style="color:#a0aec0;font-size:0.52rem;"> 002896.SZ</span></span></div>
             </div>
 
-            <div class="theme-card">
-                <div class="theme-icon">💰</div>
-                <div class="theme-title">主线四：资金全景与情绪指标</div>
-                <div class="theme-desc">两融、ETF、板块资金及市场情绪一览</div>
-                
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.66rem;color:#4a5568;line-height:1.7;">
-            <div style="background:#f7fafc;border-radius:6px;padding:8px 10px;">
-                <div style="color:#a0aec0;font-size:0.6rem;">💰 两融余额</div>
-                <div style="font-size:0.78rem;font-weight:700;color:#1a202c;">25069亿</div>
-                <div style="font-size:0.6rem;color:#718096;">较前日 +118亿</div>
+            <div style="background:#f7fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #38a169;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                    <span style="font-size:0.6rem;color:#a0aec0;min-width:16px;">#4</span>
+                    <span style="font-size:0.72rem;font-weight:700;color:#1a202c;">网信办对派拓公司启动网络安全审查</span>
+                    <span style="font-size:0.58rem;background:#38a169;color:#fff;padding:1px 6px;border-radius:8px;white-space:nowrap;">热度7</span>
+                </div>
+                <div style="font-size:0.66rem;color:#4a5568;line-height:1.5;">8月6日，中国网络安全审查办公室宣布对派拓公司（Palo Alto Networks）在华销售产品启动网络安全审查，这是继美光后第二家被审查的美国科技公司。市场认为，叠加近期Meta等AI模型失控事件频发，企业AI风险敞口增加，国内网络安全厂商有望承接市场空间，AI安全需求加速渗透。</div>
+                <div style="margin-top:8px;line-height:1.8;"><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">盛邦安全<span style="color:#a0aec0;font-size:0.52rem;"> 688651.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">任子行<span style="color:#a0aec0;font-size:0.52rem;"> 300311.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">中新赛克<span style="color:#a0aec0;font-size:0.52rem;"> 002912.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">国安股份<span style="color:#a0aec0;font-size:0.52rem;"> 000839.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">亚信安全<span style="color:#a0aec0;font-size:0.52rem;"> 688225.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">国投智能<span style="color:#a0aec0;font-size:0.52rem;"> 300188.SZ</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">永信至诚<span style="color:#a0aec0;font-size:0.52rem;"> 688244.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">山石网科<span style="color:#a0aec0;font-size:0.52rem;"> 688030.SH</span></span></div>
             </div>
-            <div style="background:#f7fafc;border-radius:6px;padding:8px 10px;">
-                <div style="color:#a0aec0;font-size:0.6rem;">📈 ETF资金(10日)</div>
-                <div style="font-size:0.78rem;font-weight:700;color:#1a202c;">0.0亿</div>
-                <div style="font-size:0.6rem;color:#718096;">核心ETF净流入</div>
+
+            <div style="background:#f7fafc;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #38a169;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                    <span style="font-size:0.6rem;color:#a0aec0;min-width:16px;">#5</span>
+                    <span style="font-size:0.72rem;font-weight:700;color:#1a202c;">百奥赛图预告上半年净利增超4倍</span>
+                    <span style="font-size:0.58rem;background:#38a169;color:#fff;padding:1px 6px;border-radius:8px;white-space:nowrap;">热度7</span>
+                </div>
+                <div style="font-size:0.66rem;color:#4a5568;line-height:1.5;">8月6日，百奥赛图发布业绩预告，预计2026年上半年归母净利润同比增长391.9%至412.7%，赛分科技、奥浦迈等多家生命科学上游企业亦预告业绩高增。市场认为，在国内研发景气度回暖、国产替代加速及创新药管线进入收获期的背景下，CXO及上游科研服务商业绩确定性增强。</div>
+                <div style="margin-top:8px;line-height:1.8;"><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">百花医药<span style="color:#a0aec0;font-size:0.52rem;"> 600721.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">泽璟制药<span style="color:#a0aec0;font-size:0.52rem;"> 688266.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">海正药业<span style="color:#a0aec0;font-size:0.52rem;"> 600267.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">荣昌生物<span style="color:#a0aec0;font-size:0.52rem;"> 688331.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">百济神州<span style="color:#a0aec0;font-size:0.52rem;"> 688235.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">阿拉丁<span style="color:#a0aec0;font-size:0.52rem;"> 688179.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">纳微科技<span style="color:#a0aec0;font-size:0.52rem;"> 688690.SH</span></span><span style="display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 7px;border-radius:3px;margin:2px;font-size:0.6rem;border:1px solid #bee3f8;">奥浦迈<span style="color:#a0aec0;font-size:0.52rem;"> 688293.SH</span></span></div>
             </div>
-            <div style="background:#f7fafc;border-radius:6px;padding:8px 10px;">
-                <div style="color:#a0aec0;font-size:0.6rem;">💾 半导体资金</div>
-                <div style="font-size:0.78rem;font-weight:700;color:#1a202c;"><span class="val-up">净流入 0.2亿</span></div>
-                <div style="font-size:0.6rem;color:#718096;">板块资金动向</div>
+  </div>
+</div>
+
+<!-- 🏆 机构热搜个股 -->
+<div class="theme-section">
+  <div class="theme-header"><h3>🏆 机构热搜个股 TOP10</h3><span style="font-size:0.68rem;color:#a0aec0;font-weight:400;">公募 · 私募 · 保险 热搜合并排名</span></div>
+  <div class="theme-body" style="padding:4px 0;">
+    
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;border-bottom:1px solid #edf2f7;">
+                <span style="font-size:0.65rem;color:#a0aec0;width:18px;text-align:right;">1</span>
+                <span style="font-size:0.7rem;font-weight:600;color:#1a202c;min-width:60px;">宁德时代</span>
+                <span style="font-size:0.56rem;color:#a0aec0;min-width:60px;">300750.SZ</span>
+                <span style="font-size:0.5rem;background:#dd6b20;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">保</span><span style="font-size:0.5rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">公</span><span style="font-size:0.5rem;background:#805ad5;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">私</span>
+                <div style="flex:1;margin-left:8px;">
+                    <div style="height:4px;background:#edf2f7;border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:100%;background:linear-gradient(90deg,#e53e3e,#ed8936);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;min-width:28px;text-align:right;">83</span>
             </div>
-            <div style="background:#f7fafc;border-radius:6px;padding:8px 10px;">
-                <div style="color:#a0aec0;font-size:0.6rem;">📊 涨跌停</div>
-                <div style="font-size:0.78rem;font-weight:700;color:#1a202c;"><span class="val-up">83</span> / <span class="val-down">1</span></div>
-                <div style="font-size:0.6rem;color:#718096;">涨停 / 跌停 家数</div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;border-bottom:1px solid #edf2f7;">
+                <span style="font-size:0.65rem;color:#a0aec0;width:18px;text-align:right;">2</span>
+                <span style="font-size:0.7rem;font-weight:600;color:#1a202c;min-width:60px;">中际旭创</span>
+                <span style="font-size:0.56rem;color:#a0aec0;min-width:60px;">300308.SZ</span>
+                <span style="font-size:0.5rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">公</span><span style="font-size:0.5rem;background:#805ad5;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">私</span>
+                <div style="flex:1;margin-left:8px;">
+                    <div style="height:4px;background:#edf2f7;border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:42%;background:linear-gradient(90deg,#e53e3e,#ed8936);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;min-width:28px;text-align:right;">35</span>
             </div>
-            </div><div style="margin-top:8px;font-size:0.66rem;color:#4a5568;">🐉 <b>龙虎榜机构买入：</b>紫光股份 <span class="val-up">+20.6亿</span>、胜宏科技 <span class="val-up">+19.3亿</span>、工业富联 <span class="val-up">+17.6亿</span></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;border-bottom:1px solid #edf2f7;">
+                <span style="font-size:0.65rem;color:#a0aec0;width:18px;text-align:right;">3</span>
+                <span style="font-size:0.7rem;font-weight:600;color:#1a202c;min-width:60px;">比亚迪</span>
+                <span style="font-size:0.56rem;color:#a0aec0;min-width:60px;">002594.SZ</span>
+                <span style="font-size:0.5rem;background:#dd6b20;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">保</span>
+                <div style="flex:1;margin-left:8px;">
+                    <div style="height:4px;background:#edf2f7;border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:40%;background:linear-gradient(90deg,#e53e3e,#ed8936);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;min-width:28px;text-align:right;">33</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;border-bottom:1px solid #edf2f7;">
+                <span style="font-size:0.65rem;color:#a0aec0;width:18px;text-align:right;">4</span>
+                <span style="font-size:0.7rem;font-weight:600;color:#1a202c;min-width:60px;">百济神州</span>
+                <span style="font-size:0.56rem;color:#a0aec0;min-width:60px;">688235.SH</span>
+                <span style="font-size:0.5rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">公</span>
+                <div style="flex:1;margin-left:8px;">
+                    <div style="height:4px;background:#edf2f7;border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:18%;background:linear-gradient(90deg,#e53e3e,#ed8936);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;min-width:28px;text-align:right;">15</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;border-bottom:1px solid #edf2f7;">
+                <span style="font-size:0.65rem;color:#a0aec0;width:18px;text-align:right;">5</span>
+                <span style="font-size:0.7rem;font-weight:600;color:#1a202c;min-width:60px;">浙江自然</span>
+                <span style="font-size:0.56rem;color:#a0aec0;min-width:60px;">605080.SH</span>
+                <span style="font-size:0.5rem;background:#805ad5;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">私</span>
+                <div style="flex:1;margin-left:8px;">
+                    <div style="height:4px;background:#edf2f7;border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:18%;background:linear-gradient(90deg,#e53e3e,#ed8936);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;min-width:28px;text-align:right;">15</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;border-bottom:1px solid #edf2f7;">
+                <span style="font-size:0.65rem;color:#a0aec0;width:18px;text-align:right;">6</span>
+                <span style="font-size:0.7rem;font-weight:600;color:#1a202c;min-width:60px;">赣锋锂业</span>
+                <span style="font-size:0.56rem;color:#a0aec0;min-width:60px;">002460.SZ</span>
+                <span style="font-size:0.5rem;background:#dd6b20;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">保</span>
+                <div style="flex:1;margin-left:8px;">
+                    <div style="height:4px;background:#edf2f7;border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:18%;background:linear-gradient(90deg,#e53e3e,#ed8936);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;min-width:28px;text-align:right;">15</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;border-bottom:1px solid #edf2f7;">
+                <span style="font-size:0.65rem;color:#a0aec0;width:18px;text-align:right;">7</span>
+                <span style="font-size:0.7rem;font-weight:600;color:#1a202c;min-width:60px;">三环集团</span>
+                <span style="font-size:0.56rem;color:#a0aec0;min-width:60px;">300408.SZ</span>
+                <span style="font-size:0.5rem;background:#805ad5;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">私</span>
+                <div style="flex:1;margin-left:8px;">
+                    <div style="height:4px;background:#edf2f7;border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:17%;background:linear-gradient(90deg,#e53e3e,#ed8936);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;min-width:28px;text-align:right;">14</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;border-bottom:1px solid #edf2f7;">
+                <span style="font-size:0.65rem;color:#a0aec0;width:18px;text-align:right;">8</span>
+                <span style="font-size:0.7rem;font-weight:600;color:#1a202c;min-width:60px;">长鑫科技</span>
+                <span style="font-size:0.56rem;color:#a0aec0;min-width:60px;">688825.SH</span>
+                <span style="font-size:0.5rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">公</span>
+                <div style="flex:1;margin-left:8px;">
+                    <div style="height:4px;background:#edf2f7;border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:14%;background:linear-gradient(90deg,#e53e3e,#ed8936);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;min-width:28px;text-align:right;">12</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;padding:5px 10px;border-bottom:1px solid #edf2f7;">
+                <span style="font-size:0.65rem;color:#a0aec0;width:18px;text-align:right;">9</span>
+                <span style="font-size:0.7rem;font-weight:600;color:#1a202c;min-width:60px;">中巨芯</span>
+                <span style="font-size:0.56rem;color:#a0aec0;min-width:60px;">688549.SH</span>
+                <span style="font-size:0.5rem;background:#e53e3e;color:#fff;padding:1px 4px;border-radius:2px;margin-left:2px;">公</span>
+                <div style="flex:1;margin-left:8px;">
+                    <div style="height:4px;background:#edf2f7;border-radius:2px;overflow:hidden;">
+                        <div style="height:100%;width:13%;background:linear-gradient(90deg,#e53e3e,#ed8936);border-radius:2px;"></div>
+                    </div>
+                </div>
+                <span style="font-size:0.7rem;font-weight:700;color:#e53e3e;min-width:28px;text-align:right;">11</span>
             </div>
   </div>
 </div>
 
 <div class="grid">
-  <!-- 情绪指数 -->
-  <div class="chart-card full">
+  <!-- 情绪指数 + 换手率 并排 -->
+  <div class="chart-card half">
     <div class="chart-header">
-      <h3>投资者情绪指数 & 万得全A（Wind CHANGEHANDRATE → 10年分位数 → 情绪指数）</h3>
+      <h3>投资者情绪指数 & 万得全A</h3>
       <div class="tabs">
         <button class="tab-btn active" onclick="switchRange('1y')">近1年</button>
         <button class="tab-btn" onclick="switchRange('3y')">近3年</button>
@@ -357,10 +362,9 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
     <div class="chart-body tall" id="chartSentiment"></div>
   </div>
 
-  
   <!-- 换手率 + 分位数 -->
-  <div class="chart-card full">
-    <div class="chart-header"><h3>万得全A 换手率(CHANGEHANDRATE) & 近10年分位数 & 万得全A指数</h3><span class="badge">Wind s_dq_amtturnover</span></div>
+  <div class="chart-card half">
+    <div class="chart-header"><h3>万得全A 换手率 & 10年分位数</h3><span class="badge">Wind</span></div>
     <div class="chart-body tall" id="chartTurnover"></div>
   </div>
 
@@ -914,12 +918,15 @@ function drawAllCharts() {
     newsHtml += renderNewsColumn('行业热点', '🏭', '#f59e0b', sn.industry || []);
     newsHtml += renderNewsColumn('个股要闻', '📊', '#22c55e', sn.stock || []);
     
-    document.getElementById('sentimentNewsCard').innerHTML = newsHtml;
+    const cardEl = document.getElementById('sentimentNewsCard');
+    if (cardEl) cardEl.innerHTML = newsHtml;
     
     // 底部摘要
     const footerEl = document.getElementById('sentimentNewsFooter');
+    if (footerEl) {
     const timeStr = sn.update_time ? ' '+sn.update_time : '';
     footerEl.innerHTML = '📌 数据来源：'+sn.source+' | 更新于 '+sn.date+timeStr+' | '+sn.total_count+'条新闻实时聚合';
+    }
   }
 
   // ETF Wind Data Card
