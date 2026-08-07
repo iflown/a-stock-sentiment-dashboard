@@ -750,17 +750,19 @@ function drawAllCharts() {
   // Limit Stats Card
   if (D.limit_stats) {
     const ls = D.limit_stats;
+    const totalStocks = ls.up_count + ls.down_count || 5400;
+    const upRatio = (ls.up_count / totalStocks * 100).toFixed(1);
+    const limitRatio = ls.limit_down > 0 ? (ls.limit_up / ls.limit_down).toFixed(1) : '∞';
     const items = [
-      {label:'涨停家数', value:ls.limit_up, color:'#ef4444'},
-      {label:'跌停家数', value:ls.limit_down, color:'#22c55e'},
-      {label:'上涨家数', value:ls.up_count, color:'#f59e0b'},
-      {label:'下跌家数', value:ls.down_count, color:'#6366f1'},
-      {label:'最大连板', value:ls.max_consecutive+'板', color:'#ec4899'},
-      {label:'封板率', value:ls.seal_rate+'%', color:'#38bdf8'},
-      {label:'今日成交额', value:(ls.turnover_billion/10000).toFixed(2)+'万亿', color:'#14b8a6'},
-      {label:'较前日', value:ls.turnover_billion > ls.prev_turnover ? '放量' : '缩量', color:ls.turnover_billion > ls.prev_turnover ? '#ef4444' : '#22c55e'},
-      {label:'半导体资金', value:(ls.semiconductor_outflow>=0?'净流出':'净流入')+Math.abs(ls.semiconductor_outflow).toFixed(1)+'亿', color:ls.semiconductor_outflow>=0?'#f97316':'#22c55e'},
-      {label:'市场特征', value:ls.market_sentiment, color:'#a855f7'},
+      {label:'涨停家数', value:ls.limit_up, color:'#e53e3e'},
+      {label:'跌停家数', value:ls.limit_down, color:'#38a169'},
+      {label:'上涨家数', value:ls.up_count, color:'#e53e3e'},
+      {label:'下跌家数', value:ls.down_count, color:'#38a169'},
+      {label:'上涨占比', value:upRatio+'%', color:parseFloat(upRatio)>50?'#e53e3e':'#38a169'},
+      {label:'涨跌比', value:ls.down_count>0?(ls.up_count/ls.down_count).toFixed(2):'--', color:'#3182ce'},
+      {label:'涨停/跌停比', value:limitRatio, color:'#805ad5'},
+      {label:'半导体资金', value:(ls.semiconductor_outflow>=0?'流出':'流入')+Math.abs(ls.semiconductor_outflow).toFixed(1)+'亿', color:'#dd6b20'},
+      {label:'市场特征', value:ls.market_sentiment || '--', color:'#a855f7'},
     ];
     document.getElementById('limitStatsCard').innerHTML = items.map(s => {
       return '<div style="background:#f7fafc;border-radius:8px;padding:10px 12px;text-align:center;border:1px solid #e2e8f0;">'+
